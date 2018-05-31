@@ -19,8 +19,8 @@ class Fixtures extends Fixture
         $author
             ->setName('José Pérez')
             ->setTitle('Developer')
-            ->setUsername('jperez')
-            ->setShortBio('Web Developer.');
+            ->setUsername('joseperez')
+            ->setShortBio('Web Developer & Musician.');
         $manager->persist($author);
 
         /* TAG */
