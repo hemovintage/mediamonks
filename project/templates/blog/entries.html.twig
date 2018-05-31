@@ -1,0 +1,75 @@
+{% extends "base.html.twig" %}
+
+{% block title %}App:blog:entries{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="blog-header">
+        <h1 class="blog-title">Media Monks Blog Test</h1>
+        <p class="lead blog-description">a blog test in Symfony 4 + SQLite + Docker + Bootstrap 3 by <a href="https://www.linkedin.com/in/hemovintage/">José 'Hemo' Pérez</a>.</p>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-8 blog-main">
+            {% for blogPost in blogPosts %}
+                {% set paragraphs = blogPost.synopsis|split('</p>') %}
+                {% set firstParagraph = paragraphs|first ~ '</p>' %}
+                <div class="blog-post">
+                    <h2 class="blog-post-title">
+                        <a href="{{ path('entry', {'slug': blogPost.slug}) }}">
+						    {{ blogPost.title }}
+						</a>
+                    </h2>
+                    <p class="blog-post-meta">
+                        {{ blogPost.getUpdatedAt|date('F j, Y') }} by
+
+						{% if blogPost.author %}
+						    <a href="{{ path('author', {'name': blogPost.author.username|url_encode }) }}">
+						        {{ blogPost.author.name }}
+						    </a>
+						{% else %}
+                            Unknown Author
+                        {% endif %}
+                    </p>
+                    {{ firstParagraph|raw }}<br />
+
+                    {% if blogPost.tag|length %}
+                    <p>tags: 
+                        <ul class="list-inline">
+                            {% for item in blogPost.tag %}
+                                <li class="list-inline-item">{{ item.name }}</li>
+                            {% endfor %}
+                        </ul>
+                    </p>
+                    {% endif %}
+
+                    <a href="{{ path('entry', {'slug': blogPost.slug}) }}">Read more</a>
+                </div>
+            {% else %}
+                <div class="alert alert-danger" role="alert">
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    <span class="sr-only">Error:</span>
+                    You have no blog articles. Please log in and create an article.
+                </div>
+            {% endfor %}
+
+            {% set canPrevious = page > 1 %}
+            {% set canNext = (page * entryLimit) < totalBlogPosts %}
+            <nav>
+                <ul class="pager">
+                    <li class="previous {% if canPrevious == false %}disabled{% endif %}">
+                        <a href="{% if canPrevious %}{{ path('entries', {'page': page - 1}) }}{% endif %}">
+                            <span aria-hidden="true">&larr;</span> Older
+                        </a>
+                    </li>
+                    <li class="next {% if canNext == false %}disabled{% endif %}">
+                        <a href="{% if canNext %}{{ path('entries', {'page': page + 1}) }}{% endif %}">
+                            Newer <span aria-hidden="true">&rarr;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+{% endblock %}
