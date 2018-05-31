@@ -16,10 +16,56 @@ $ git clone https://github.com/hemovintage/mediamonks
 ```
 
 ### Folder Structure
-_...To Do..._
+```sh 
+mediamonks
+|-- phpdocker
+|   |-- nginx
+|   `-- php-fpm
+`-- project
+    |-- assets
+    |   |-- css
+    |   `-- js
+    |-- bin
+    |-- config
+    |   |-- packages
+    |   |   |-- dev
+    |   |   |-- prod
+    |   |   `-- test
+    |   `-- routes
+    |       `-- dev
+    |-- node_modules
+    |   `--[...]
+    |-- public
+    |   `-- build
+    |       |-- fonts
+    |       `-- images
+    |-- src
+    |   |-- Controller
+    |   |-- DataFixtures
+    |   |   `-- ORM
+    |   |-- Entity
+    |   |-- EventListener
+    |   |   `-- Author
+    |   |-- Form
+    |   |-- Migrations
+    |   `-- Repository
+    |-- templates
+    |   |-- admin
+    |   |-- api
+    |   `-- blog
+    |-- tests
+    |-- translations
+    |-- var
+    |   |-- cache
+    |   |-- data
+    |   `-- log
+    `-- vendor
+        `-- [...]
 
-### Building Docker Enviroment
-#### to build docker enviroment
+```
+
+### Building Docker Environment
+#### to build docker environment
 ```sh 
 $ ~/mediamonks/docker-compose build
 ```
@@ -85,3 +131,8 @@ _this last command will watch our changes in our files, and auto-compile if it i
 ##### default_author_user : 'joseperez'
 ##### default_author_pass : 'FitzRoy1683'
 
+#
+#
+# 
+# Important Note:
+_In case Composer, Bootstrap or Yarn were problematic (or you feel lazy) you could unzip **'~/mediamonks/project/fullproject.zip'** with all vendors & assets in it._
