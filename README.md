@@ -94,6 +94,13 @@ to install all dependencies declared in composer.json run:
 ```sh 
 $ ~/mediamonks/project/composer install
 ```
+_in case you have permission issues running this app with logs, cache or updateing database (is not typical) you should fix it. Please run:_ 
+```sh 
+$ ~/mediamonks/project/sudo chmod 777 var/cache/ -R 
+$ ~/mediamonks/project/sudo chmod 777 var/logs/ -R 
+$ ~/mediamonks/project/sudo chmod 777 var/data/ -R 
+```
+
 copy or rename '.env.dist' file to '.env'
 
 ### SQLite : Database  & Fixtures
@@ -135,4 +142,4 @@ _this last command will watch our changes in our files, and auto-compile if it i
 #
 # 
 # Important Note:
-_In case Composer, Bootstrap or Yarn were problematic (or you feel lazy) you could unzip **'~/mediamonks/project/fullproject.zip'** with all vendors & assets in it._
+_In case Composer, Bootstrap or Yarn were problematic (or you feel lazy) you could unzip **'~/mediamonks/project/full_project.zip'** with all vendors & assets in it._
